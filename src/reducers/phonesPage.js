@@ -5,7 +5,6 @@ const initialState = {
   ids: []
 };
 
-
 export default (state = initialState, {type, payload}) => {
   switch (type) {
     case FETCH_PHONES_SUCCESS:
@@ -14,7 +13,8 @@ export default (state = initialState, {type, payload}) => {
     case LOAD_MORE_FETCH_PHONES_SUCCESS:
       const ids = arrayOfIdsValues(payload, 'id');
       return merge(state, {ids: concat(state.ids, ids)});
+
     default:
-      return state
+      return state;
   }
-}
+};

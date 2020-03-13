@@ -1,4 +1,7 @@
 import {
+    FETCH_PHONES_BY_ID_FAILURE,
+    FETCH_PHONES_BY_ID_START,
+    FETCH_PHONES_BY_ID_SUCCESS,
     FETCH_PHONES_FAILURE,
     FETCH_PHONES_START,
     FETCH_PHONES_SUCCESS,
@@ -6,7 +9,13 @@ import {
     LOAD_MORE_FETCH_PHONES_START,
     LOAD_MORE_FETCH_PHONES_SUCCESS
 } from './types';
-import {fetchPhones as fetchPhonesApi, loadMorePhones as loadMorePhonesApi} from '../api';
+
+import {
+    fetchPhoneById as fetchPhoneByIdApi,
+    fetchPhones as fetchPhonesApi,
+    loadMorePhones as loadMorePhonesApi
+} from '../api';
+
 import {getRenderedPhonesLength} from '../selectors';
 
 export const fetchPhones = () => async dispatch => {
@@ -49,3 +58,21 @@ export const loadMorePhones = () => async (dispatch, getState) => {
         })
     }
 };
+
+export const fetchPhoneById = (id) => async dispatch => {
+    dispatch({type: FETCH_PHONES_BY_ID_START})
+
+    try {
+        const phone = await fetchPhoneByIdApi(id)
+        dispatch({
+            type: FETCH_PHONES_BY_ID_SUCCESS,
+            payload: phone
+        })
+    } catch (err) {
+        dispatch({
+            type: FETCH_PHONES_BY_ID_FAILURE,
+            payload: err,
+            error: true
+        })
+    }
+}

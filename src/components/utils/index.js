@@ -12,3 +12,9 @@ export const merge = (state, newState) => {
 export const concat = (a, b) => a.concat(b);
 
 export const arrayOfIdsValues = (array, key) => array.map(item => item[key]);
+
+export const findObjBy = (id, array) => array.filter(item => item.id === id)[0];
+
+export const createObjWithKey = (key, values) => {
+    return {[key]: values};
+};

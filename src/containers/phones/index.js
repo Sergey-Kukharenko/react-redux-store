@@ -1,10 +1,11 @@
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-import {fetchPhones, loadMorePhones} from '../../actions'
-import {getPhones} from '../../selectors'
-import {truncate} from '../../components/utils'
+import {fetchPhones, loadMorePhones} from '../../actions';
+import {getPhones} from '../../selectors';
+import {truncate} from '../../components/utils';
+import Layout from '../layout';
 
 
 class Phones extends Component {
@@ -53,9 +54,9 @@ class Phones extends Component {
     }
 
     render() {
-        const {phones, loadMorePhones} = this.props
+        const {phones, loadMorePhones} = this.props;
         return (
-            <div>
+            <Layout>
                 <div className="books row">
                     {phones.map((phone, index) => this.renderPhone(phone, index))}
                 </div>
@@ -69,18 +70,18 @@ class Phones extends Component {
                         </button>
                     </div>
                 </div>
-            </div>
+            </Layout>
         )
     }
 }
 
 const mapStateToProps = state => ({
     phones: getPhones(state)
-})
+});
 
 const mapDispatchToProps = {
     fetchPhones,
     loadMorePhones
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Phones)
+export default connect(mapStateToProps, mapDispatchToProps)(Phones);
