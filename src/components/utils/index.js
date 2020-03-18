@@ -18,3 +18,12 @@ export const findObjBy = (id, array) => array.filter(item => item.id === id)[0];
 export const createObjWithKey = (key, values) => {
     return {[key]: values};
 };
+
+export const newObj = array => obj => array.reduce((acc, elem) => {
+    acc[elem] = obj[elem];
+    return acc;
+}, {});
+
+export const sorObj = obj => Object.entries(obj);
+
+export const compose = (...functions) => args => functions.reduceRight((arg, fn) => fn(arg), args);
