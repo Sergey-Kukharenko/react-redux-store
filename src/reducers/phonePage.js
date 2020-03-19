@@ -1,5 +1,5 @@
 import {FETCH_PHONES_BY_ID_SUCCESS} from '../actions/types';
-import {merge} from "../components/utils";
+import {merge} from '../components/utils';
 
 const initialState = {
     id: null

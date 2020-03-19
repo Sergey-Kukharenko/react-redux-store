@@ -1,4 +1,5 @@
 import {
+    ADD_PHONE_TO_BASKET,
     FETCH_PHONES_BY_ID_FAILURE,
     FETCH_PHONES_BY_ID_START,
     FETCH_PHONES_BY_ID_SUCCESS,
@@ -7,7 +8,8 @@ import {
     FETCH_PHONES_SUCCESS,
     LOAD_MORE_FETCH_PHONES_FAILURE,
     LOAD_MORE_FETCH_PHONES_START,
-    LOAD_MORE_FETCH_PHONES_SUCCESS
+    LOAD_MORE_FETCH_PHONES_SUCCESS,
+    SEARCH_PHONE
 } from './types';
 
 import {
@@ -60,10 +62,10 @@ export const loadMorePhones = () => async (dispatch, getState) => {
 };
 
 export const fetchPhoneById = (id) => async dispatch => {
-    dispatch({type: FETCH_PHONES_BY_ID_START})
+    dispatch({type: FETCH_PHONES_BY_ID_START});
 
     try {
-        const phone = await fetchPhoneByIdApi(id)
+        const phone = await fetchPhoneByIdApi(id);
         dispatch({
             type: FETCH_PHONES_BY_ID_SUCCESS,
             payload: phone
@@ -75,4 +77,18 @@ export const fetchPhoneById = (id) => async dispatch => {
             error: true
         })
     }
-}
+};
+
+export const addPhoneToBasket = id => dispatch => {
+    dispatch({
+        type: ADD_PHONE_TO_BASKET,
+        payload: id
+    });
+};
+
+export const searchPhone = text => dispatch => {
+    dispatch({
+        type: SEARCH_PHONE,
+        payload: text
+    })
+};

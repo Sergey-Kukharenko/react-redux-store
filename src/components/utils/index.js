@@ -1,5 +1,5 @@
 export const truncate = (str, symbols) => str.length > 10 ? str.substring(0, symbols) + "..." : str;
-// конвертируем массив объектов в объект объектов с ключами 'id' // 1: {}, 2: {}, ...
+
 export const convert = (array, key) => array.reduce((result, item,) => {
     result[item[key]] = item;
     return result
@@ -27,3 +27,9 @@ export const newObj = array => obj => array.reduce((acc, elem) => {
 export const sorObj = obj => Object.entries(obj);
 
 export const compose = (...functions) => args => functions.reduceRight((arg, fn) => fn(arg), args);
+
+export const mergeIdToArr = (array, id) => [...array, id];
+
+export const arrayObjectsByKeys = key => array => array.map(item => item[key]);
+
+export const sumValuesArray = arr => arr.reduce((a, b) => a + b, 0);

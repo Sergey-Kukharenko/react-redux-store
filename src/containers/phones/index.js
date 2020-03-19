@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {fetchPhones, loadMorePhones} from '../../actions';
+import {fetchPhones, loadMorePhones, addPhoneToBasket} from '../../actions';
 import {getPhones} from '../../selectors';
 import {truncate} from '../../components/utils';
 import Layout from '../layout';
@@ -81,7 +81,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     fetchPhones,
-    loadMorePhones
+    loadMorePhones,
+    addPhoneToBasket
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Phones);
