@@ -1,5 +1,5 @@
-import {FETCH_PHONES_BY_ID_SUCCESS, FETCH_PHONES_SUCCESS, LOAD_MORE_FETCH_PHONES_SUCCESS} from '../actions/types';
 import {convert, merge, createObjWithKey} from '../components/utils';
+import {FETCH_PHONES_BY_ID_SUCCESS, FETCH_PHONES_SUCCESS, LOAD_MORE_FETCH_PHONES_SUCCESS} from '../actions/types';
 
 const initialState = {};
 

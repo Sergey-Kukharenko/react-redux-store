@@ -7,7 +7,6 @@ import {getPhones} from '../../selectors';
 import {truncate} from '../../components/utils';
 import Layout from '../layout';
 
-
 class Phones extends Component {
 
     componentDidMount() {

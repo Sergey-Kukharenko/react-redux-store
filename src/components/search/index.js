@@ -1,55 +1,49 @@
-import React, {Component} from 'react';
+import React, {useState} from "react";
 import {connect} from 'react-redux';
 
 import {searchPhone} from '../../actions';
 
-class Search extends Component {
-  constructor(props) {
-    super(props); // чтобы не переропределять стандартное поведение конструктора
-    this.state = {
-      value: ''
-    };
+const Search = props => {
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
+  const [searchValue, setSearchValue] = useState('');
 
-  handleChange(event) {
-    this.setState({
-      value: event.target.value
-    })
-  }
+  const handleChange = event => {
+    props.searchPhone(event.target.value);
+    setSearchValue(event.target.value);
+  };
 
-  handleSubmit(event) {
+  const resetInputField = () => setSearchValue('');
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.props.searchPhone(this.state.value)
-  }
+    props.searchPhone(searchValue);
+    resetInputField();
+  };
 
-  render() {
-    return (
+  return (
       <div className='well blosd'>
         <h3 className='lead'>Quick shop</h3>
         <div className='input-group'>
-          <form onSubmit={this.handleSubmit}>
+          <form id="form" onSubmit={handleSubmit}>
             <input
-              onChange={this.handleChange}
-              type="text"
-              className='form-control'
+                type="text"
+                value={searchValue}
+                onChange={handleChange}
+                className="form-control"
             />
           </form>
-          <span className='input-group-btn'>
-            <button className='btn btn-default'>
-              <span className='glyphicon glyphicon-search'></span>
+          <span className="input-group-btn">
+            <button type="submit" form="form" className="btn btn-default">
+              <span className="glyphicon glyphicon-search"></span>
             </button>
           </span>
         </div>
       </div>
-    )
-  }
-}
+  )
+};
 
 const mapDispatchToProps = {
   searchPhone
 };
 
-export default connect(null, mapDispatchToProps)(Search)
+export default connect(null, mapDispatchToProps)(Search);

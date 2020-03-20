@@ -1,8 +1,9 @@
-import {FETCH_PHONES_SUCCESS, LOAD_MORE_FETCH_PHONES_SUCCESS} from '../actions/types';
 import {arrayOfIdsValues, concat, merge} from '../components/utils';
+import {FETCH_PHONES_SUCCESS, LOAD_MORE_FETCH_PHONES_SUCCESS, SEARCH_PHONE} from '../actions/types';
 
 const initialState = {
-  ids: []
+  ids: [],
+  search: ''
 };
 
 export default (state = initialState, {type, payload}) => {
@@ -13,6 +14,9 @@ export default (state = initialState, {type, payload}) => {
     case LOAD_MORE_FETCH_PHONES_SUCCESS:
       const ids = arrayOfIdsValues(payload, 'id');
       return merge(state, {ids: concat(state.ids, ids)});
+
+    case SEARCH_PHONE:
+      return merge(state, {search: payload});
 
     default:
       return state;
