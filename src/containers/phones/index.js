@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {fetchPhones, loadMorePhones, addPhoneToBasket} from '../../actions';
+import {fetchPhones, loadMorePhones, addPhoneToBasket, fetchCategories} from '../../actions';
 import {getPhones} from '../../selectors';
 import {truncate} from '../../components/utils';
 import Layout from '../layout';
@@ -10,7 +10,8 @@ import Layout from '../layout';
 class Phones extends Component {
 
     componentDidMount() {
-        this.props.fetchPhones()
+        this.props.fetchPhones();
+        this.props.fetchCategories();
     }
 
     renderPhone(phone, index) {
@@ -80,6 +81,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     fetchPhones,
+    fetchCategories,
     loadMorePhones,
     addPhoneToBasket
 };

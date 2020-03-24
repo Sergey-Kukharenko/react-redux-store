@@ -1,5 +1,6 @@
-import phones from './mockPhones'
 import {findObjBy} from '../components/utils';
+import phones from './mockPhones';
+import categories from './mockCategories';
 
 export const fetchPhones = async () => {
     // return await superagent.get('/api') // => в реальном приложении
@@ -20,5 +21,11 @@ export const fetchPhoneById = async (id) => {
     return new Promise(resolve => {
         const phone = findObjBy(id, phones);
         resolve(phone);
+    })
+};
+
+export const fetchCategories = async () => {
+    return new Promise((resolve, reject) => {
+        resolve(categories);
     })
 };
