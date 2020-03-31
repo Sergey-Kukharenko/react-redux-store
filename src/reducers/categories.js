@@ -1,4 +1,4 @@
-import {convert, createObjWithKey, merge} from '../components/utils';
+import {convert, merge} from '../components/utils';
 import {
   FETCH_CATEGORIES_SUCCESS,
 } from '../actions/types';
