@@ -1,4 +1,11 @@
-import {arrayObjectsByKeys, compose, sumValuesArray} from "./components/utils";
+import {
+    arrayIdenticalValues,
+    arrayLength,
+    arrayObjectsByKeys,
+    compose,
+    sumValuesArray,
+    unique
+} from "./components/utils";
 import * as R from "ramda";
 
 export const getPhoneById = (state, id) => state.phones[id];
@@ -32,30 +39,31 @@ const always = val => () => val;
 
 const when = (fn, fn2) => array => fn() ? fn2(array) : array;
 
-const filterCategory = (key, category) => array => array.filter(item => item[key] === category);
+const filterByKey = (key, category) => array => array.filter(item => item[key] === category);
+
+const addFieldToObj = (obj, field, value) => Object.assign(obj, {[field]: +value});
 
 export const getPhones = (state, ownProps) => compose(
     filter(state, 'name'),
-    when(always(getActiveCategoryId(ownProps)), filterCategory('categoryId', getActiveCategoryId(ownProps))),
+    when(always(getActiveCategoryId(ownProps)), filterByKey('categoryId', getActiveCategoryId(ownProps))),
     arrayOfValues(state)
 )(state.phonesPage.ids);
 
-// начать от сюда
 export const getBasketPhonesWithCount = state => {
 
     const phoneCount = id => R.compose(
-        R.length, // кол-во определённого телефона
-        R.filter(basketId => R.equals(id, basketId))
-    )(state.basket) // state.basket - это Ids с повторениями, которые храняться в корзине
+        arrayLength,
+        arrayIdenticalValues(id)
+    )(state.basket);
 
-    const phoneWithCount = phone => R.assoc('count', phoneCount(phone.id), phone) // => в phone создаём поле count = phoneCount
+    const phoneWithCount = phone => addFieldToObj(phone, 'count', phoneCount(phone.id));
 
-    const uniqueIds = R.uniq(state.basket) // => список Ids делаем уникальным, т.е без повторений
+    const uniqueIds = unique(state.basket);
 
     const phones = R.compose(
-        R.map(phoneWithCount), // => получаем массив объектов уникальных телефонов с полем count = phoneCount
-        R.map(id => getPhoneById(state, id)) // => получаем массив объектов уникальных телефонов
-    )(uniqueIds)
+        R.map(phoneWithCount),
+        arrayOfValues(state)
+    )(uniqueIds);
 
     return phones
 };

@@ -10,7 +10,7 @@ import * as R from 'ramda';
 import {getActiveCategoryId, getCategories} from '../../selectors';
 
 const Categories = ({categories, activeCategoryId}) => {
-
+// начать от сюда
   const renderCategory = (category, index) => {
     const getActiveState = R.propEq('id', activeCategoryId)
     const linkClass = classNames({
