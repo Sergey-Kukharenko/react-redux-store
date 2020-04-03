@@ -45,3 +45,7 @@ export const unique = (arr) => {
 export const arrayIdenticalValues = id => array => array.filter(item => item === id);
 
 export const arrayLength = array => array.length;
+
+export const findValInKeyOfObj = (object, key, value) => object[key] === value;
+
+export const isNull = x => x == null;
