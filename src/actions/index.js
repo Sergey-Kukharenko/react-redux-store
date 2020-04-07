@@ -12,7 +12,9 @@ import {
     LOAD_MORE_FETCH_PHONES_FAILURE,
     LOAD_MORE_FETCH_PHONES_START,
     LOAD_MORE_FETCH_PHONES_SUCCESS,
-    SEARCH_PHONE
+    SEARCH_PHONE,
+    REMOVE_PHONE_FROM_BASKET,
+    CLEAN_BASKET
 } from './types';
 
 import {getRenderedPhonesLength} from '../selectors';
@@ -112,4 +114,21 @@ export const fetchCategories = () => async dispatch => {
             error: true
         })
     }
+};
+
+export const removePhoneFromBasket = id => dispatch => {
+    dispatch({
+        type: REMOVE_PHONE_FROM_BASKET,
+        payload: id
+    })
+};
+
+export const cleanBasket = () => dispatch => {
+    dispatch({
+        type: CLEAN_BASKET
+    })
+};
+
+export const basketCheckout = phones => () => {
+    alert(JSON.stringify(phones))
 };

@@ -49,3 +49,7 @@ export const arrayLength = array => array.length;
 export const findValInKeyOfObj = (object, key, value) => object[key] === value;
 
 export const isNull = x => x == null;
+
+export const removeUniqueArray = (value, array) => array.filter(item => item !== value);
+
+export const isArrayEmpty = array => array.length === 0;
