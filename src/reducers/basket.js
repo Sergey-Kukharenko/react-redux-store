@@ -7,7 +7,7 @@ export default (state = initialState, {type, payload}) => {
   switch (type) {
     case ADD_PHONE_TO_BASKET:
       return mergeIdToArr(state, payload);
-// начать с 015 - 00.03.26
+
     case REMOVE_PHONE_FROM_BASKET:
       return removeUniqueArray(payload, state);
 

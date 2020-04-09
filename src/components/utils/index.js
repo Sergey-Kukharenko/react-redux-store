@@ -32,7 +32,7 @@ export const mergeIdToArr = (array, id) => [...array, id];
 
 export const arrayObjectsByKeys = key => array => array.map(item => item[key]);
 
-export const sumValuesArray = arr => arr.reduce((a, b) => a + b, 0);
+export const sumValuesArray = arr => arr.reduce((a, b) => Number(a) + Number(b), 0);
 
 export const unique = (arr) => {
     const result = [];

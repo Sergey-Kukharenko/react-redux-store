@@ -14,12 +14,6 @@ export const getActiveCategoryId = ownProps => ownProps.match.params.id;
 
 const filter = (state, key) => array => array.filter(item => item[key].toLocaleLowerCase().indexOf(state.phonesPage.search.toLocaleLowerCase()) > -1);
 
-
-// export const getPhones = state => compose(
-//     filter(state, 'name'),
-//     arrayOfValues(state)
-// )(state.phonesPage.ids);
-
 export const getRenderedPhonesLength = state => state.phonesPage.ids.length;
 
 export const getTotalBasketCount = state => state.basket.length;
